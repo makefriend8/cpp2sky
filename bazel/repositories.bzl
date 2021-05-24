@@ -17,9 +17,9 @@ def skywalking_data_collect_protocol():
     # 2021-03-01
     sha256 = "4a3401098e0e49ae56d03cc4890b21c75bab6ccf1c157d73bb0c93fc15bb07c7",
     urls = [
-      "https://github.com/apache/skywalking-data-collect-protocol/archive/c987be061e570ce7d0d8f415753f05555e787407.tar.gz"
+      "https://github.com/makefriend8/skywalking-data-collect-protocol/archive/refs/tags/v8.5.1.tar.gz"
     ],
-    strip_prefix = "skywalking-data-collect-protocol-c987be061e570ce7d0d8f415753f05555e787407",
+    strip_prefix = "skywalking-data-collect-protocol-8.5.1",
   )
 
 def com_github_grpc_grpc():
