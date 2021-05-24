@@ -40,4 +40,6 @@ message TracerConfig {
   // CDS sync request interval. If this value is zero, CDS feature will be disabled.
   // | Static config only
   uint32 cds_request_interval = 7;
+  
+  string namespace = 9;
 }
