@@ -15,7 +15,7 @@ def skywalking_data_collect_protocol():
   http_archive(
     name = "skywalking_data_collect_protocol",
     # 2021-03-01
-    sha256 = "9234d603f8f3e1ae5fd491f2c8ade6fb09ed59a4a7e5b026b35872afee75a018",
+    sha256 = "9ed12d356319e90546c0176af92da4770975c8d2b44000c765d81a24d32b4bdf",
     urls = [
       "https://github.com/makefriend8/skywalking-data-collect-protocol/archive/refs/tags/v8.5-beta.2.tar.gz"
     ],
