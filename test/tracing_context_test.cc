@@ -315,7 +315,7 @@ TEST_F(TracingContextTest, SkipAnalysisSegment) {
 }
 
 TEST_F(TracingContextTest, SW8CreateTest) {
-  TracingContextImpl sc(config_.service_name(), config_.instance_name(),
+  TracingContextImpl sc(config_.service_name(), config_.instance_name(),"my_name_space",
                         span_ctx_, span_ext_ctx_, random_);
   EXPECT_EQ(sc.service(), "mesh");
   EXPECT_EQ(sc.serviceInstance(), "service_0");
