@@ -175,8 +175,8 @@ TracingContextImpl::TracingContextImpl(const std::string& service_name,
       trace_id_(parent_span_context_->traceId()),
       trace_segment_id_(random.uuid()),
       service_(service_name),
-      service_instance_(instance_name) 
-      name_space_(name_space){}
+      service_instance_(instance_name), 
+      name_space_(name_space) {}
 
 TracingSpanPtr TracingContextImpl::createExitSpan(TracingSpanPtr parent_span) {
   auto current_span = createSpan();
