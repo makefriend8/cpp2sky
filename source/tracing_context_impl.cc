@@ -146,14 +146,16 @@ void TracingSpanImpl::setComponentId(int32_t component_id) {
 
 TracingContextImpl::TracingContextImpl(const std::string& service_name,
                                        const std::string& instance_name,
+                                       const std::string& name_space,
                                        RandomGenerator& random)
     : trace_id_(random.uuid()),
       trace_segment_id_(random.uuid()),
       service_(service_name),
-      service_instance_(instance_name) {}
+      service_instance_(instance_name),
+      name_space_(name_space) {}
 
 TracingContextImpl::TracingContextImpl(
-    const std::string& service_name, const std::string& instance_name,
+    const std::string& service_name, const std::string& instance_name,const std::string& name_space,
     SpanContextPtr parent_span_context,
     SpanContextExtensionPtr parent_ext_span_context, RandomGenerator& random)
     : parent_span_context_(std::move(parent_span_context)),
@@ -161,17 +163,20 @@ TracingContextImpl::TracingContextImpl(
       trace_id_(parent_span_context_->traceId()),
       trace_segment_id_(random.uuid()),
       service_(service_name),
-      service_instance_(instance_name) {}
+      service_instance_(instance_name),
+      name_space_(name_space) {}
 
 TracingContextImpl::TracingContextImpl(const std::string& service_name,
                                        const std::string& instance_name,
+                                       const std::string& name_space,
                                        SpanContextPtr parent_span_context,
                                        RandomGenerator& random)
     : parent_span_context_(std::move(parent_span_context)),
       trace_id_(parent_span_context_->traceId()),
       trace_segment_id_(random.uuid()),
       service_(service_name),
-      service_instance_(instance_name) {}
+      service_instance_(instance_name) 
+      name_space_(name_space){}
 
 TracingSpanPtr TracingContextImpl::createExitSpan(TracingSpanPtr parent_span) {
   auto current_span = createSpan();
@@ -273,18 +278,20 @@ TracingContextFactory::TracingContextFactory(const TracerConfig& config)
 
 TracingContextPtr TracingContextFactory::create() {
   return std::make_unique<TracingContextImpl>(service_name_, instance_name_,
+                                              name_space_,
                                               random_generator_);
 }
 
 TracingContextPtr TracingContextFactory::create(SpanContextPtr span_context) {
   return std::make_unique<TracingContextImpl>(service_name_, instance_name_,
+                                              name_space_,
                                               span_context, random_generator_);
 }
 
 TracingContextPtr TracingContextFactory::create(
     SpanContextPtr span_context, SpanContextExtensionPtr ext_span_context) {
   auto context = std::make_unique<TracingContextImpl>(
-      service_name_, instance_name_, span_context, ext_span_context,
+      service_name_, instance_name_,name_space_, span_context, ext_span_context,
       random_generator_);
   if (ext_span_context->tracingMode() == TracingMode::Skip) {
     context->setSkipAnalysis();

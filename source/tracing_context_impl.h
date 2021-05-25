@@ -114,13 +114,17 @@ class TracingContextImpl : public TracingContext {
  public:
   // This constructor is called when there is no parent SpanContext.
   TracingContextImpl(const std::string& service_name,
-                     const std::string& instance_name, RandomGenerator& random);
+                     const std::string& instance_name,
+                     const std::string& name_space, 
+                     RandomGenerator& random);
   TracingContextImpl(const std::string& service_name,
                      const std::string& instance_name,
+                     const std::string& name_space,
                      SpanContextPtr parent_span_context,
                      RandomGenerator& random);
   TracingContextImpl(const std::string& service_name,
                      const std::string& instance_name,
+                     const std::string& name_space,
                      SpanContextPtr parent_span_context,
                      SpanContextExtensionPtr parent_ext_span_context,
                      RandomGenerator& random);
@@ -132,6 +136,9 @@ class TracingContextImpl : public TracingContext {
   const std::string& service() const override { return service_; }
   const std::string& serviceInstance() const override {
     return service_instance_;
+  }
+  const std::string& name_space() const override {
+    return name_space_;
   }
   const std::list<TracingSpanPtr>& spans() const override { return spans_; }
   SpanContextPtr parentSpanContext() const override {
@@ -172,6 +179,7 @@ class TracingContextImpl : public TracingContext {
   std::string trace_segment_id_;
   std::string service_;
   std::string service_instance_;
+  std::string name_space_;
 
   bool should_skip_analysis_ = false;
 };
@@ -188,6 +196,7 @@ class TracingContextFactory {
  private:
   std::string service_name_;
   std::string instance_name_;
+  std::string name_space_;
   RandomGeneratorImpl random_generator_;
 };
 
