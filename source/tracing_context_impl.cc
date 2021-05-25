@@ -254,6 +254,7 @@ skywalking::v3::SegmentObject TracingContextImpl::createSegmentObject() {
   obj.set_tracesegmentid(trace_segment_id_);
   obj.set_service(service_);
   obj.set_serviceinstance(service_instance_);
+  obj.set_namespace_(name_space_);
 
   for (auto& span : spans_) {
     auto* entry = obj.mutable_spans()->Add();
@@ -274,7 +275,8 @@ bool TracingContextImpl::readyToSend() {
 
 TracingContextFactory::TracingContextFactory(const TracerConfig& config)
     : service_name_(config.service_name()),
-      instance_name_(config.instance_name()) {}
+      instance_name_(config.instance_name()),
+      name_space_(config.namespace_()) {}
 
 TracingContextPtr TracingContextFactory::create() {
   return std::make_unique<TracingContextImpl>(service_name_, instance_name_,
