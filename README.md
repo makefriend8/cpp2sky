@@ -2,7 +2,6 @@
 
 [![cpp2sky test](https://github.com/makefriend8/cpp2sky/actions/workflows/main.yml/badge.svg)](https://github.com/makefriend8/cpp2sky/actions/workflows/main.yml)
 
-![cpp2sky test](https://github.com/SkyAPM/cpp2sky/workflows/cpp2sky%20test/badge.svg)
 
 Distributed tracing and monitor SDK in CPP for Apache SkyWalking APM
 
@@ -16,7 +15,7 @@ Download cpp2sky tarball with specified version.
 http_archive(
   name = "com_github_skyapm_cpp2sky",
   sha256 = <SHA256>,
-  urls = ["https://github.com/skyAPM/cpp2sky/archive/<VERSION>.tar.gz"],
+  urls = ["https://github.com/makefriend8/cpp2sky/archive/<VERSION>.tar.gz"],
 )
 ```
 
